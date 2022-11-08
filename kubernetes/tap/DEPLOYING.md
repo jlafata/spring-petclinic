@@ -9,7 +9,7 @@ If you make modifications to the source, push these changes to your own Git repo
 When you are done developing your app, you can simply deploy it using:
 
 ```
-tanzu apps workload apply -f kubernetes/tap/workload.yaml
+tanzu apps workload apply -f kubernetes/tap/workload.yaml -n dev-space --yes
 ```
 
 If you would like deploy the code from your local working directory you can use the following command:
