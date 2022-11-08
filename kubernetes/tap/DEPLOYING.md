@@ -9,13 +9,13 @@ If you make modifications to the source, push these changes to your own Git repo
 When you are done developing your app, you can simply deploy it using:
 
 ```
-tanzu apps workload apply -f config/workload.yaml
+tanzu apps workload apply -f kubernetes/tap/workload.yaml
 ```
 
-If you would like deploy the code from tyour local working directory you can use the following command:
+If you would like deploy the code from your local working directory you can use the following command:
 
 ```
-tanzu apps workload create spring-petclinic -f config/workload.yaml \
+tanzu apps workload create spring-petclinic -f kubernetes/tap/workload.yaml \
   --local-path . \
   --source-image <REPOSITORY-PREFIX>/spring-petclinic-source \
   --type web

@@ -5,10 +5,11 @@ metadata:
   labels:
     apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/part-of: spring-petclinic
+    apps.tanzu.vmware.com/has-tests: "true"
 spec:
   source:
     git:
-      url: https://github.com/sample-accelerators/spring-petclinic.git
+      url: https://github.com/jlafata/spring-petclinic.git
       ref:
         branch: main
-        tag: tap-1.0
+#        tag: tap-1.0
