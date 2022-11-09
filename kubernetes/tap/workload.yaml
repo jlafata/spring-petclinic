@@ -7,23 +7,10 @@ metadata:
     app.kubernetes.io/part-of: spring-petclinic
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
-  params:
-  - name: annotations
-    value:
-      autoscaling.knative.dev/minScale: "1"
-      autoscaling.knative.dev/maxScale: "5"
-  env:
-    - name: SPRING_PROFILES_ACTIVE
-      value: postgres
-  serviceClaims:
-    - name: db
-      ref:
-        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ResourceClaim
-        name: my-postgres-db
   source:
     git:
       url: https://github.com/jlafata/spring-petclinic.git
       ref:
         branch: accelerator
 #        tag: tap-1.0
+
