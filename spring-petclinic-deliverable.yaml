@@ -1,30 +1,134 @@
-apiVersion: v1
-items:
-- apiVersion: carto.run/v1alpha1
-  kind: Deliverable
-  metadata:
-    creationTimestamp: "2022-11-08T22:28:20Z"
-    generation: 1
-    labels:
-      app.kubernetes.io/component: deliverable
-      app.kubernetes.io/part-of: spring-petclinic
-      app.tanzu.vmware.com/deliverable-type: web
-      apps.tanzu.vmware.com/has-tests: "true"
-      apps.tanzu.vmware.com/workload-type: web
-      carto.run/cluster-template-name: deliverable-template
-      carto.run/resource-name: deliverable
-      carto.run/supply-chain-name: source-test-scan-to-url
-      carto.run/template-kind: ClusterTemplate
-      carto.run/workload-name: spring-petclinic
-      carto.run/workload-namespace: dev-space
-    name: spring-petclinic
-    namespace: dev-space
-    resourceVersion: "2302919"
-    uid: 2b42a131-9dd4-41a0-8415-af1da79236ae
-  spec:
-    source:
-      image: jltestcr.azurecr.io/tap-wkld/spring-petclinic-dev-space-bundle:9110db16-a1ec-4cd3-874d-e08a2664f936
-kind: List
+apiVersion: carto.run/v1alpha1
+kind: Deliverable
 metadata:
-  resourceVersion: ""
-  selfLink: ""
+  creationTimestamp: "2022-11-08T22:28:20Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/component: deliverable
+    app.kubernetes.io/part-of: spring-petclinic
+    app.tanzu.vmware.com/deliverable-type: web
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    carto.run/cluster-template-name: deliverable-template
+    carto.run/resource-name: deliverable
+    carto.run/supply-chain-name: source-test-scan-to-url
+    carto.run/template-kind: ClusterTemplate
+    carto.run/workload-name: spring-petclinic
+    carto.run/workload-namespace: dev-space
+  name: spring-petclinic
+  namespace: dev-space
+  ownerReferences:
+  - apiVersion: carto.run/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Workload
+    name: spring-petclinic
+    uid: 9110db16-a1ec-4cd3-874d-e08a2664f936
+  resourceVersion: "3979163"
+  uid: 2b42a131-9dd4-41a0-8415-af1da79236ae
+spec:
+  source:
+    image: jltestcr.azurecr.io/tap-wkld/spring-petclinic-dev-space-bundle:9110db16-a1ec-4cd3-874d-e08a2664f936
+status:
+  conditions:
+  - lastTransitionTime: "2022-11-08T22:28:20Z"
+    message: ""
+    reason: Ready
+    status: "True"
+    type: DeliveryReady
+  - lastTransitionTime: "2022-11-09T19:09:09Z"
+    message: ""
+    reason: ResourceSubmissionComplete
+    status: "True"
+    type: ResourcesSubmitted
+  - lastTransitionTime: "2022-11-08T22:41:40Z"
+    message: ""
+    reason: HealthyConditionRule
+    status: "True"
+    type: ResourcesHealthy
+  - lastTransitionTime: "2022-11-09T19:09:09Z"
+    message: ""
+    reason: Ready
+    status: "True"
+    type: Ready
+  deliveryRef:
+    kind: ClusterDelivery
+    name: delivery-basic
+  observedGeneration: 1
+  resources:
+  - conditions:
+    - lastTransitionTime: "2022-11-08T22:41:36Z"
+      message: ""
+      reason: ResourceSubmissionComplete
+      status: "True"
+      type: ResourceSubmitted
+    - lastTransitionTime: "2022-11-08T22:41:36Z"
+      message: ""
+      reason: ReadyCondition
+      status: "True"
+      type: Healthy
+    - lastTransitionTime: "2022-11-08T22:41:36Z"
+      message: ""
+      reason: Ready
+      status: "True"
+      type: Ready
+    name: source-provider
+    outputs:
+    - digest: sha256:02e73b5af6c0181157cdbe9ae641cbcb863352c73c124686d98450d7d3ff8039
+      lastTransitionTime: "2022-11-09T19:09:05Z"
+      name: url
+      preview: |
+        http://source-controller-manager-artifact-service.source-system.svc.cluster.local./imagerepository/dev-space/spring-petclinic-delivery/3a9c902b73c1ebdf1488fe9031a2e3d9640632be2d25013b870f95b78e7ca31e.tar.gz
+    - digest: sha256:eb308997b6ddd8f6937d71dfae1e27c87331a930e1f0c4158190e096680c7bf1
+      lastTransitionTime: "2022-11-09T19:09:05Z"
+      name: revision
+      preview: |
+        jltestcr.azurecr.io/tap-wkld/spring-petclinic-dev-space-bundle:9110db16-a1ec-4cd3-874d-e08a2664f936@sha256:3a9c902b73c1ebdf1488fe9031a2e3d9640632be2d25013b870f95b78e7ca31e
+    stampedRef:
+      apiVersion: source.apps.tanzu.vmware.com/v1alpha1
+      kind: ImageRepository
+      name: spring-petclinic-delivery
+      namespace: dev-space
+    templateRef:
+      apiVersion: carto.run/v1alpha1
+      kind: ClusterSourceTemplate
+      name: delivery-source-template
+  - conditions:
+    - lastTransitionTime: "2022-11-09T19:09:09Z"
+      message: ""
+      reason: ResourceSubmissionComplete
+      status: "True"
+      type: ResourceSubmitted
+    - lastTransitionTime: "2022-11-08T22:41:40Z"
+      message: 'condition status: True, message: '
+      reason: MatchedCondition
+      status: "True"
+      type: Healthy
+    - lastTransitionTime: "2022-11-09T19:09:09Z"
+      message: ""
+      reason: Ready
+      status: "True"
+      type: Ready
+    inputs:
+    - name: source-provider
+    name: deployer
+    outputs:
+    - digest: sha256:02e73b5af6c0181157cdbe9ae641cbcb863352c73c124686d98450d7d3ff8039
+      lastTransitionTime: "2022-11-09T19:09:09Z"
+      name: url
+      preview: |
+        http://source-controller-manager-artifact-service.source-system.svc.cluster.local./imagerepository/dev-space/spring-petclinic-delivery/3a9c902b73c1ebdf1488fe9031a2e3d9640632be2d25013b870f95b78e7ca31e.tar.gz
+    - digest: sha256:eb308997b6ddd8f6937d71dfae1e27c87331a930e1f0c4158190e096680c7bf1
+      lastTransitionTime: "2022-11-09T19:09:09Z"
+      name: revision
+      preview: |
+        jltestcr.azurecr.io/tap-wkld/spring-petclinic-dev-space-bundle:9110db16-a1ec-4cd3-874d-e08a2664f936@sha256:3a9c902b73c1ebdf1488fe9031a2e3d9640632be2d25013b870f95b78e7ca31e
+    stampedRef:
+      apiVersion: kappctrl.k14s.io/v1alpha1
+      kind: App
+      name: spring-petclinic
+      namespace: dev-space
+    templateRef:
+      apiVersion: carto.run/v1alpha1
+      kind: ClusterDeploymentTemplate
+      name: app-deploy
