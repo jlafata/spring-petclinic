@@ -12,5 +12,4 @@ spec:
       url: https://github.com/jlafata/spring-petclinic.git
       ref:
         branch: accelerator
-#        tag: tap-1.0
 
