@@ -30,17 +30,29 @@ Or you can run it from Maven directly using the Spring Boot Maven plugin. If you
 
 ## Building a Container
 
-There is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:
+Though there is a `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:
 
 ```
 ./mvnw spring-boot:build-image
 ```
 
+To build with the Dockerfile.
+
+```
+ docker build -t petclinic-app . -f Dockerfile
+```
+
+
+
+## References
+
+- [Building PetClinic app using Dockerfile](https://docs.docker.com/language/java/build-images/)
+
+
 ## In case you find a bug/suggested improvement for Spring Petclinic
 Our issue tracker is available here: https://github.com/spring-projects/spring-petclinic/issues
 
-
-## Database configuration
+## Database configuration - 
 
 In its default configuration, Petclinic uses an in-memory database (H2) which
 gets populated at startup with data. The h2 console is automatically exposed at `http://localhost:8080/h2-console`
@@ -59,6 +71,14 @@ or
 ```
 docker run -e POSTGRES_USER=petclinic -e POSTGRES_PASSWORD=petclinic -e POSTGRES_DB=petclinic -p 5432:5432 postgres:14.1
 ```
+
+## Using Docker Compose to start the postgres and mysql database(s)
+
+```
+ docker-compose up -d
+```
+
+
 
 Further documentation is provided for [MySQL](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/resources/db/mysql/petclinic_db_setup_mysql.txt)
 and for [PostgreSQL](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/resources/db/postgres/petclinic_db_setup_postgres.txt).
