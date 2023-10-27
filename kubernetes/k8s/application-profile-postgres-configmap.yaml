@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-petclinic-config
+  labels:
+    app: spring-petclinic
+data:
+#  kubectl get service postgres -o jsonpath='{.spec.clusterIP}'
+  POSTGRES_URL: jdbc:postgresql://172.30.217.227:5432/postgresdb
+  POSTGRES_USER: admin
+  POSTGRES_PASS: psltest
+  SPRING_PROFILES_ACTIVE: postgres

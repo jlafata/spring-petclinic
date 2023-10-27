@@ -34,12 +34,16 @@ Though there is a `Dockerfile` in this project. You can build a container image 
 
 ```
 ./mvnw spring-boot:build-image
+docker tag docker.io/library/spring-petclinic:2.6.0-SNAPSHOT  jltestcr.azurecr.io/spring-petclinic:2.6.0-SNAPSHOT 
+docker push jltestcr.azurecr.io/spring-petclinic:2.6.0-SNAPSHOT
 ```
 
 To build with the Dockerfile.
 
 ```
  docker build -t petclinic-app . -f Dockerfile
+ docker tag petclinic-app:latest jltestcr.azurecr.io/petclinic-app:1.0.0-RELEASE
+ docker push jltestcr.azurecr.io/petclinic-app:1.0.0-RELEASE
 ```
 
 

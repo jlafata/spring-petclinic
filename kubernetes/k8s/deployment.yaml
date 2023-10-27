@@ -16,7 +16,40 @@ spec:
         app.kubernetes.io/part-of: spring-petclinic
     spec:
       containers:
-      - image: spring-petclinic:latest
+#      - image: spring-petclinic:latest
+#      - image: jltestcr.azurecr.io/spring-petclinic:2.6.0-SNAPSHOT
+      - image: jltestcr.azurecr.io/petclinic-app:1.0.0-RELEASE
+### add environment variables to connect to postgres
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            valueFrom:
+              configMapKeyRef:
+                name: spring-petclinic-config
+                key: SPRING_PROFILES_ACTIVE
+          - name: POSTGRES_URL
+            valueFrom:
+              configMapKeyRef:
+                name: spring-petclinic-config
+                key: POSTGRES_URL
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: spring-petclinic-config
+                key: POSTGRES_USER
+          - name: POSTGRES_PASS
+            valueFrom:
+              configMapKeyRef:
+                name: spring-petclinic-config
+                key: POSTGRES_PASS
+
+# for openshift deployment
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -31,3 +64,5 @@ spec:
             path: /actuator/health/readiness
             port: 8080
           initialDelaySeconds: 15
+      imagePullSecrets:
+        - name: registry-credentials

@@ -1,6 +1,4 @@
 ---
-### prior to deploying this file, remember to run the following
-### ~/ms-workspace/deployment_credentials/gitRepository-credentials/git-secret.sh accelerator-system
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Accelerator
 metadata:
@@ -11,6 +9,4 @@ spec:
     ref:
       branch: accelerator
     url: https://github.com/jlafata/spring-petclinic.git
-    secretRef:
-      name: git-secret
 #    interval: 10s
