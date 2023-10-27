@@ -1,5 +1,6 @@
 # Use Ubuntu Jammy as the base image
 FROM ubuntu:jammy as build
+#FROM http://europe-docker.pkg.dev/tap-sandbox-dev/tap-bits/tap-packages@sha256:72d30e0638c6e01e23e4f36a33e061dde35cc590c69ae6cfca046d02380bc340 as build
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -21,7 +22,8 @@ COPY src src
 RUN mvn install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM ubuntu:jammy
+#FROM ubuntu:jammy
+FROM http://europe-docker.pkg.dev/tap-sandbox-dev/tap-bits/tap-packages@sha256:72d30e0638c6e01e23e4f36a33e061dde35cc590c69ae6cfca046d02380bc340
 RUN apt-get update && apt-get install -y openjdk-17-jdk
 
 VOLUME /tmp
