@@ -9,7 +9,7 @@ metadata:
     - spring
     - tanzu
   annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=spring-petclinic'
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=petclinic'
 spec:
   type: service
   lifecycle: experimental
